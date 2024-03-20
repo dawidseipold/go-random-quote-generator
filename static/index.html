@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Quote</title>
+</head>
+<body>
+<button onclick="getQuote()">Get a random quote</button>
+
+<blockquote data-quote ></blockquote>
+<p data-author></p>
+
+<script>
+  const blockquote = document.querySelector('[data-quote]');
+  const paragraph = document.querySelector('[data-author]');
+
+  function getQuote() {
+    fetch('/quote')
+      .then(response => response.json())
+      .then(data => {
+        const { quote, author } = data
+
+        blockquote.textContent = quote;
+        paragraph.textContent = author;
+      });
+  }
+</script>
+
+</body>
+</html>
